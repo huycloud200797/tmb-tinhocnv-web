@@ -2,22 +2,39 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0052cc">
     <title>TIN HỌC TIỂU HỌC - Học để hiểu - Hiểu để sáng tạo</title>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
+        :root {
+            --primary: #0052cc;
+            --primary-dark: #003d99;
+            --accent: #ffcc00;
+            --text-dark: #1a1a2e;
+            --text-muted: #555;
+            --bg-light: #f0f4f8;
+            --card-bg: #ffffff;
+            --radius: 14px;
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --transition: all 0.25s ease;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #eef2f7;
-            color: #333;
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
@@ -25,16 +42,23 @@
             color: inherit;
         }
 
-        /* --- HEADER TOP --- */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ========== TOP HEADER ========== */
         .top-header {
-            background-color: #ffffff;
-            padding: 12px 5%;
+            background: #fff;
+            padding: 12px 4%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            flex-wrap: wrap;
-            gap: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo-container {
@@ -44,104 +68,108 @@
         }
 
         .logo-icon {
-            background-color: #0066cc;
+            background: var(--primary);
             color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 20px;
+            flex-shrink: 0;
         }
 
         .logo-text h1 {
-            color: #0056b3;
-            font-size: 20px;
+            color: var(--primary);
+            font-size: 1.15rem;
             font-weight: 800;
+            line-height: 1.2;
         }
 
         .logo-text p {
             color: #666;
-            font-size: 12px;
+            font-size: 0.72rem;
             font-style: italic;
         }
 
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .search-box {
             position: relative;
-            display: flex;
-            align-items: center;
+            display: none; /* Ẩn trên mobile, hiện từ tablet */
         }
 
         .search-box input {
-            padding: 8px 35px 8px 15px;
-            border: 1px solid #ccc;
-            border-radius: 20px;
-            font-size: 13px;
+            padding: 9px 36px 9px 14px;
+            border: 1px solid #d0d7e2;
+            border-radius: 50px;
+            font-size: 0.85rem;
             outline: none;
             width: 180px;
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,82,204,0.15);
         }
 
         .search-box i {
             position: absolute;
-            right: 12px;
-            color: #777;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            pointer-events: none;
         }
 
         .btn-auth {
             padding: 8px 14px;
-            border-radius: 6px;
-            font-size: 13px;
+            border-radius: 8px;
+            font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
+            border: none;
+            transition: var(--transition);
             white-space: nowrap;
         }
 
         .btn-login {
-            background-color: #e8f1fd;
-            color: #0066cc;
-            border: 1px solid #b3d1ff;
+            background: #e8f1fd;
+            color: var(--primary);
+        }
+
+        .btn-login:hover {
+            background: #d6e6fc;
         }
 
         .btn-register {
-            background-color: #0066cc;
+            background: var(--primary);
             color: white;
-            border: none;
         }
 
-        /* --- NAVIGATION --- */
+        .btn-register:hover {
+            background: var(--primary-dark);
+        }
+
+        /* ========== NAVIGATION ========== */
         .nav-bar {
-            background-color: #0052cc;
-            display: flex;
-            justify-content: center;
-            padding: 0 5%;
+            background: var(--primary);
+            position: relative;
         }
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-item {
-            color: white;
-            padding: 14px 18px;
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            transition: 0.2s;
-        }
-
-        .nav-item:hover, .nav-item.active {
-            background-color: #ffcc00;
-            color: #003366;
+            justify-content: space-between;
+            padding: 0 4%;
         }
 
         .mobile-toggle {
@@ -149,39 +177,66 @@
             background: none;
             border: none;
             color: white;
-            font-size: 22px;
-            padding: 10px 15px;
+            font-size: 1.4rem;
+            padding: 14px 0;
             cursor: pointer;
-            width: 100%;
-            text-align: right;
         }
 
-        /* --- HERO BANNER --- */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            color: white;
+            padding: 15px 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: var(--accent);
+            color: #003366;
+        }
+
+        /* ========== HERO ========== */
         .hero-banner {
             background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-            padding: 30px 5%;
+            padding: 32px 4%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
-            border-bottom: 4px solid #0052cc;
+            gap: 30px;
+            border-bottom: 4px solid var(--primary);
         }
 
         .hero-text {
             flex: 1;
+            max-width: 520px;
         }
 
         .hero-text h2 {
             color: #003366;
-            font-size: 16px;
+            font-size: 0.95rem;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
         }
 
         .hero-text h1 {
-            color: #0056b3;
-            font-size: 32px;
+            color: var(--primary);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
             font-weight: 900;
-            margin: 5px 0 10px;
+            margin-bottom: 12px;
+            line-height: 1.2;
         }
 
         .hero-text h1 span {
@@ -189,58 +244,76 @@
         }
 
         .hero-text p {
-            color: #444;
-            font-size: 15px;
-            margin-bottom: 20px;
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 22px;
         }
 
         .btn-start {
-            background-color: #0056b3;
+            background: var(--primary);
             color: white;
-            padding: 10px 22px;
-            border-radius: 25px;
-            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 4px 10px rgba(0,86,179,0.3);
+            box-shadow: 0 6px 16px rgba(0,82,204,0.3);
+            transition: var(--transition);
         }
 
-        .hero-img {
-            max-width: 420px;
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .btn-start:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
         }
 
-        /* --- MAIN LAYOUT --- */
+        .hero-visual {
+            flex-shrink: 0;
+            width: min(380px, 42vw);
+            aspect-ratio: 16/10;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-visual i {
+            font-size: 5rem;
+            color: var(--primary);
+            opacity: 0.85;
+        }
+
+        /* ========== MAIN LAYOUT ========== */
         .container {
             max-width: 1280px;
-            margin: 20px auto;
-            padding: 0 15px;
+            margin: 24px auto;
+            padding: 0 16px;
             display: grid;
             grid-template-columns: 260px 1fr 260px;
             gap: 20px;
         }
 
         .card-box {
-            background: white;
-            border-radius: 12px;
-            padding: 16px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 18px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
         }
 
         .card-title {
-            font-size: 15px;
+            font-size: 0.95rem;
             font-weight: 700;
-            color: #0056b3;
+            color: var(--primary);
             display: flex;
             align-items: center;
             gap: 8px;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
             border-bottom: 2px solid #eef2f7;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             text-transform: uppercase;
         }
 
@@ -248,7 +321,7 @@
             color: #ff9800;
         }
 
-        /* Feature Cards */
+        /* Featured Cards */
         .featured-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -256,27 +329,26 @@
         }
 
         .feat-card {
-            border-radius: 12px;
-            padding: 15px 10px;
+            border-radius: 14px;
+            padding: 18px 12px;
             color: white;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            min-height: 160px;
+            min-height: 170px;
+            transition: var(--transition);
+        }
+
+        .feat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .feat-card i {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-
-        .feat-card img {
-            width: 45px;
-            height: 45px;
-            object-fit: contain;
-            margin-bottom: 8px;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
         }
 
         .feat-1 { background: linear-gradient(135deg, #7f7fd5, #86a8e7); }
@@ -284,19 +356,34 @@
         .feat-3 { background: linear-gradient(135deg, #fc4a1a, #f7b731); }
         .feat-4 { background: linear-gradient(135deg, #00c6ff, #0072ff); }
 
-        .feat-card h3 { font-size: 14px; }
-        .feat-card p { font-size: 11px; opacity: 0.9; margin: 4px 0 8px; }
+        .feat-card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .feat-card p {
+            font-size: 0.75rem;
+            opacity: 0.92;
+            margin-bottom: 12px;
+            line-height: 1.35;
+        }
 
         .btn-action-sm {
             background: rgba(255,255,255,0.95);
-            color: #333;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 11px;
-            font-weight: bold;
+            color: #222;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transition: var(--transition);
         }
 
-        /* Lessons Grid */
+        .btn-action-sm:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+
+        /* Lessons */
         .lessons-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -305,105 +392,190 @@
 
         .lesson-card {
             background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 10px;
+            border: 1px solid #e5e9f0;
+            border-radius: 12px;
+            padding: 14px 10px;
             text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
         }
 
-        .lesson-img-box {
-            height: 65px;
+        .lesson-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 6px 18px rgba(0,82,204,0.12);
+            transform: translateY(-3px);
+        }
+
+        .lesson-icon {
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            font-size: 2rem;
         }
 
-        .lesson-img-box img {
-            max-height: 50px;
-            max-width: 100%;
-            object-fit: contain;
+        .lesson-card h4 {
+            font-size: 0.8rem;
+            color: #222;
+            margin-bottom: 2px;
+            line-height: 1.3;
         }
 
-        .lesson-img-box i {
-            font-size: 36px;
+        .lesson-card span {
+            font-size: 0.72rem;
+            color: #777;
         }
 
-        .lesson-card h4 { font-size: 12px; color: #333; }
-        .lesson-card span { font-size: 11px; color: #777; }
+        /* Side lists */
+        .news-list, .side-menu {
+            list-style: none;
+        }
 
-        /* Side List */
-        .news-list, .side-menu { list-style: none; }
-        .news-item { padding: 8px 0; border-bottom: 1px dashed #eee; font-size: 13px; }
-        .news-date { color: #888; font-size: 11px; display: block; }
-        
+        .news-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e5e9f0;
+            font-size: 0.88rem;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-item a:hover {
+            color: var(--primary);
+        }
+
+        .news-date {
+            color: #888;
+            font-size: 0.75rem;
+            display: block;
+            margin-top: 2px;
+        }
+
         .side-menu-item {
-            padding: 10px;
-            border-radius: 8px;
+            padding: 11px 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 13px;
+            font-size: 0.88rem;
             margin-bottom: 6px;
-            background-color: #f8f9fa;
+            background: #f7f9fc;
+            transition: var(--transition);
+            cursor: pointer;
         }
 
-        .side-menu-left { display: flex; align-items: center; gap: 10px; }
-        .side-menu-left i { color: #0066cc; }
+        .side-menu-item:hover {
+            background: #e8f1fd;
+            color: var(--primary);
+        }
 
-        /* FOOTER */
+        .side-menu-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .side-menu-left i {
+            color: var(--primary);
+            width: 18px;
+            text-align: center;
+        }
+
+        /* Schedule */
+        .schedule-item {
+            font-size: 0.88rem;
+            padding: 6px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .room-tag {
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .room-1 { color: #0a7a3e; background: #e6f7ee; }
+        .room-2 { color: #0052cc; background: #e8f1fd; }
+
+        /* ========== FOOTER ========== */
         footer {
-            background-color: #003366;
+            background: #003366;
             color: white;
-            padding: 20px 5%;
-            margin-top: 30px;
+            padding: 22px 4%;
+            margin-top: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
-            font-size: 13px;
+            gap: 12px;
+            font-size: 0.85rem;
         }
 
-        /* --- RESPONSIVE MOBILE --- */
-        @media (max-width: 992px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
+        footer a {
+            opacity: 0.9;
+        }
 
+        footer a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* ========== RESPONSIVE ========== */
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 240px 1fr;
+            }
+            .sidebar-right {
+                grid-column: 1 / -1;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            .sidebar-right .card-box {
+                margin-bottom: 0;
+            }
             .featured-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
             .lessons-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-
-            .hero-banner {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero-img {
-                max-width: 100%;
+            .search-box {
+                display: flex;
             }
         }
 
-        @media (max-width: 600px) {
+        /* Mobile & Small Tablet */
+        @media (max-width: 768px) {
             .top-header {
-                justify-content: center;
-                text-align: center;
+                padding: 10px 4%;
             }
 
-            .header-actions {
-                width: 100%;
-                justify-content: center;
+            .logo-text h1 {
+                font-size: 1rem;
             }
 
-            .search-box input {
-                width: 140px;
+            .logo-text p {
+                display: none;
             }
 
+            .search-box {
+                display: none;
+            }
+
+            .btn-auth {
+                padding: 7px 12px;
+                font-size: 0.8rem;
+            }
+
+            /* Mobile menu */
             .mobile-toggle {
                 display: block;
             }
@@ -412,6 +584,12 @@
                 display: none;
                 flex-direction: column;
                 width: 100%;
+                background: var(--primary);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 999;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.15);
             }
 
             .nav-menu.show {
@@ -419,17 +597,66 @@
             }
 
             .nav-item {
-                padding: 12px 20px;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
+                padding: 14px 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.12);
             }
 
-            .featured-grid, .lessons-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .hero-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 28px 5%;
+            }
+
+            .hero-text {
+                max-width: 100%;
+            }
+
+            .hero-visual {
+                width: 100%;
+                max-width: 320px;
+                aspect-ratio: 16/9;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .sidebar-right {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .lessons-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
             footer {
                 flex-direction: column;
                 text-align: center;
+                gap: 10px;
+            }
+        }
+
+        /* Small phones */
+        @media (max-width: 480px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lessons-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .feat-card {
+                min-height: 150px;
+            }
+
+            .btn-login {
+                display: none; /* Giữ nút Đăng ký nổi bật hơn trên màn hình rất nhỏ */
             }
         }
     </style>
@@ -439,12 +666,15 @@
     <!-- TOP HEADER -->
     <header class="top-header">
         <div class="logo-container">
-            <div class="logo-icon"><i class="fa-solid fa-laptop"></i></div>
+            <div class="logo-icon">
+                <i class="fa-solid fa-laptop"></i>
+            </div>
             <div class="logo-text">
                 <h1>TIN HỌC TIỂU HỌC</h1>
                 <p>Học để hiểu – Hiểu để sáng tạo</p>
             </div>
         </div>
+
         <div class="header-actions">
             <div class="search-box">
                 <input type="text" placeholder="Tìm kiếm...">
@@ -455,37 +685,46 @@
         </div>
     </header>
 
-    <!-- NAVIGATION BAR -->
+    <!-- NAVIGATION -->
     <nav class="nav-bar">
-        <button class="mobile-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i> Menu</button>
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="#" class="nav-item active"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
-            <li><a href="#" class="nav-item"><i class="fa-solid fa-gamepad"></i> Học mà chơi</a></li>
-            <li><a href="#" class="nav-item"><i class="fa-solid fa-desktop"></i> Phòng máy</a></li>
-            <li><a href="#" class="nav-item"><i class="fa-solid fa-file-pen"></i> Bài tập</a></li>
-            <li><a href="#" class="nav-item"><i class="fa-solid fa-trophy"></i> Góc học sinh</a></li>
-            <li><a href="#" class="nav-item"><i class="fa-solid fa-user-graduate"></i> Góc giáo viên</a></li>
-        </ul>
+        <div class="nav-inner">
+            <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Mở menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" class="nav-item active"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
+                <li><a href="#" class="nav-item"><i class="fa-solid fa-gamepad"></i> Học mà chơi</a></li>
+                <li><a href="#" class="nav-item"><i class="fa-solid fa-desktop"></i> Phòng máy</a></li>
+                <li><a href="#" class="nav-item"><i class="fa-solid fa-file-pen"></i> Bài tập</a></li>
+                <li><a href="#" class="nav-item"><i class="fa-solid fa-trophy"></i> Góc học sinh</a></li>
+                <li><a href="#" class="nav-item"><i class="fa-solid fa-user-graduate"></i> Góc giáo viên</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <!-- HERO BANNER -->
+    <!-- HERO -->
     <section class="hero-banner">
         <div class="hero-text">
-            <h2>CHÀO MỪNG BẠN ĐẾN VỚI</h2>
+            <h2>Chào mừng bạn đến với</h2>
             <h1>TIN HỌC <span>TIỂU HỌC</span></h1>
             <p>Khám phá – Học tập – Sáng tạo<br>Cùng nhau chinh phục thế giới công nghệ!</p>
-            <a href="#" class="btn-start">Bắt đầu học ngay <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="#" class="btn-start">
+                Bắt đầu học ngay <i class="fa-solid fa-arrow-right"></i>
+            </a>
         </div>
-        <img class="hero-img" src="watermarked_img_13237896373365051795.png" alt="Minh họa Tin học">
+        <div class="hero-visual">
+            <i class="fa-solid fa-laptop-code"></i>
+        </div>
     </section>
 
-    <!-- MAIN CONTAINER LAYOUT -->
+    <!-- MAIN CONTENT -->
     <div class="container">
-
         <!-- LEFT SIDEBAR -->
         <aside class="sidebar-left">
             <div class="card-box">
-                <div class="card-title"><i class="fa-solid fa-bullhorn"></i> THÔNG BÁO MỚI</div>
+                <div class="card-title">
+                    <i class="fa-solid fa-bullhorn"></i> Thông báo mới
+                </div>
                 <ul class="news-list">
                     <li class="news-item">
                         <a href="#">Thông báo lịch thi Tin học cấp trường</a>
@@ -503,20 +742,33 @@
             </div>
 
             <div class="card-box">
-                <div class="card-title"><i class="fa-solid fa-calendar-days"></i> LỊCH PHÒNG MÁY</div>
-                <p style="font-size:12px; color:#666; margin-bottom:8px;">Hôm nay: Thứ Tư, 22/05/2024</p>
-                <div style="font-size:13px; line-height: 1.8;">
-                    <p><strong>Tiết 1 - 2:</strong> Lớp 4A <span style="float:right; color:green;">Phòng 1</span></p>
-                    <p><strong>Tiết 3 - 4:</strong> Lớp 5B <span style="float:right; color:blue;">Phòng 2</span></p>
-                    <p><strong>Tiết 5 - 6:</strong> Lớp 3A <span style="float:right; color:green;">Phòng 1</span></p>
+                <div class="card-title">
+                    <i class="fa-solid fa-calendar-days"></i> Lịch phòng máy
+                </div>
+                <p style="font-size:0.8rem; color:#666; margin-bottom:10px;">
+                    Hôm nay: Thứ Tư, 22/05/2024
+                </p>
+                <div class="schedule-item">
+                    <span><strong>Tiết 1-2:</strong> Lớp 4A</span>
+                    <span class="room-tag room-1">Phòng 1</span>
+                </div>
+                <div class="schedule-item">
+                    <span><strong>Tiết 3-4:</strong> Lớp 5B</span>
+                    <span class="room-tag room-2">Phòng 2</span>
+                </div>
+                <div class="schedule-item">
+                    <span><strong>Tiết 5-6:</strong> Lớp 3A</span>
+                    <span class="room-tag room-1">Phòng 1</span>
                 </div>
             </div>
         </aside>
 
-        <!-- CENTER CONTENT -->
+        <!-- CENTER -->
         <main class="main-content">
             <div class="card-box">
-                <div class="card-title"><i class="fa-solid fa-star"></i> KHÁM PHÁ NỔI BẬT</div>
+                <div class="card-title">
+                    <i class="fa-solid fa-star"></i> Khám phá nổi bật
+                </div>
                 <div class="featured-grid">
                     <div class="feat-card feat-1">
                         <i class="fa-solid fa-keyboard"></i>
@@ -537,7 +789,7 @@
                         <a href="#" class="btn-action-sm">Làm bài ngay</a>
                     </div>
                     <div class="feat-card feat-4">
-                        <img src="watermarked_img_5453653346802350928.png" alt="Scratch Icon">
+                        <i class="fa-solid fa-code"></i>
                         <h3>Scratch Mini</h3>
                         <p>Lập trình đơn giản với Scratch</p>
                         <a href="#" class="btn-action-sm">Khám phá</a>
@@ -546,30 +798,42 @@
             </div>
 
             <div class="card-box">
-                <div class="card-title"><i class="fa-solid fa-book-open"></i> BÀI HỌC MỚI</div>
+                <div class="card-title">
+                    <i class="fa-solid fa-book-open"></i> Bài học mới
+                </div>
                 <div class="lessons-grid">
                     <div class="lesson-card">
-                        <div class="lesson-img-box"><i class="fa-solid fa-desktop" style="color:#0056b3;"></i></div>
+                        <div class="lesson-icon" style="color:#0056b3;">
+                            <i class="fa-solid fa-desktop"></i>
+                        </div>
                         <h4>Bài 1: Máy tính và em</h4>
                         <span>Lớp 1</span>
                     </div>
                     <div class="lesson-card">
-                        <div class="lesson-img-box"><i class="fa-solid fa-computer-mouse" style="color:#2e7d32;"></i></div>
+                        <div class="lesson-icon" style="color:#2e7d32;">
+                            <i class="fa-solid fa-computer-mouse"></i>
+                        </div>
                         <h4>Bài 2: Sử dụng chuột</h4>
                         <span>Lớp 2</span>
                     </div>
                     <div class="lesson-card">
-                        <div class="lesson-img-box"><img src="watermarked_img_13474334536420521927.png" alt="Word"></div>
+                        <div class="lesson-icon" style="color:#1565c0;">
+                            <i class="fa-solid fa-file-word"></i>
+                        </div>
                         <h4>Bài 3: Làm quen Word</h4>
                         <span>Lớp 3</span>
                     </div>
                     <div class="lesson-card">
-                        <div class="lesson-img-box"><img src="watermarked_img_3001502237620426503.png" alt="PowerPoint"></div>
+                        <div class="lesson-icon" style="color:#e65100;">
+                            <i class="fa-solid fa-file-powerpoint"></i>
+                        </div>
                         <h4>Bài 4: PowerPoint</h4>
                         <span>Lớp 4</span>
                     </div>
                     <div class="lesson-card">
-                        <div class="lesson-img-box"><img src="watermarked_img_5453653346802350928.png" alt="Scratch"></div>
+                        <div class="lesson-icon" style="color:#f57c00;">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
                         <h4>Bài 5: Lập trình Scratch</h4>
                         <span>Lớp 5</span>
                     </div>
@@ -580,55 +844,91 @@
         <!-- RIGHT SIDEBAR -->
         <aside class="sidebar-right">
             <div class="card-box">
-                <div class="card-title"><i class="fa-solid fa-award"></i> GÓC HỌC SINH</div>
+                <div class="card-title">
+                    <i class="fa-solid fa-award"></i> Góc học sinh
+                </div>
                 <ul class="side-menu">
                     <li class="side-menu-item">
-                        <div class="side-menu-left"><i class="fa-solid fa-medal"></i> <strong>Bảng xếp hạng sao</strong></div>
+                        <div class="side-menu-left">
+                            <i class="fa-solid fa-medal"></i>
+                            <strong>Bảng xếp hạng sao</strong>
+                        </div>
                         <i class="fa-solid fa-angle-right"></i>
                     </li>
                     <li class="side-menu-item">
-                        <div class="side-menu-left"><i class="fa-solid fa-folder-open"></i> <strong>Sản phẩm của em</strong></div>
+                        <div class="side-menu-left">
+                            <i class="fa-solid fa-folder-open"></i>
+                            <strong>Sản phẩm của em</strong>
+                        </div>
                         <i class="fa-solid fa-angle-right"></i>
                     </li>
                     <li class="side-menu-item">
-                        <div class="side-menu-left"><i class="fa-solid fa-certificate"></i> <strong>Chứng nhận</strong></div>
+                        <div class="side-menu-left">
+                            <i class="fa-solid fa-certificate"></i>
+                            <strong>Chứng nhận</strong>
+                        </div>
                         <i class="fa-solid fa-angle-right"></i>
                     </li>
                 </ul>
             </div>
 
             <div class="card-box">
-                <div class="card-title"><i class="fa-solid fa-user-check"></i> GÓC GIÁO VIÊN</div>
+                <div class="card-title">
+                    <i class="fa-solid fa-chalkboard-user"></i> Góc giáo viên
+                </div>
                 <ul class="side-menu">
                     <li class="side-menu-item">
-                        <div class="side-menu-left"><i class="fa-solid fa-book-bookmark"></i> <strong>Giáo án điện tử</strong></div>
+                        <div class="side-menu-left">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                            <strong>Giáo án điện tử</strong>
+                        </div>
                         <i class="fa-solid fa-angle-right"></i>
                     </li>
                     <li class="side-menu-item">
-                        <div class="side-menu-left"><i class="fa-solid fa-clipboard-question"></i> <strong>Đề kiểm tra</strong></div>
+                        <div class="side-menu-left">
+                            <i class="fa-solid fa-clipboard-question"></i>
+                            <strong>Đề kiểm tra</strong>
+                        </div>
                         <i class="fa-solid fa-angle-right"></i>
                     </li>
                     <li class="side-menu-item">
-                        <div class="side-menu-left"><i class="fa-solid fa-database"></i> <strong>Học liệu số</strong></div>
+                        <div class="side-menu-left">
+                            <i class="fa-solid fa-database"></i>
+                            <strong>Học liệu số</strong>
+                        </div>
                         <i class="fa-solid fa-angle-right"></i>
                     </li>
                 </ul>
             </div>
         </aside>
-
     </div>
 
     <!-- FOOTER -->
     <footer>
         <div>© 2024 Tin học Tiểu học. Tất cả quyền được bảo lưu.</div>
-        <div><a href="#">Giới thiệu</a> | <a href="#">Điều khoản</a> | <a href="#">Bảo mật</a></div>
+        <div>
+            <a href="#">Giới thiệu</a> · 
+            <a href="#">Điều khoản</a> · 
+            <a href="#">Bảo mật</a>
+        </div>
     </footer>
 
     <script>
         function toggleMenu() {
-            var menu = document.getElementById("navMenu");
-            menu.classList.toggle("show");
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('show');
         }
+
+        // Đóng menu khi click ra ngoài (mobile)
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('navMenu');
+            const toggle = document.querySelector('.mobile-toggle');
+            if (menu.classList.contains('show') && 
+                !menu.contains(e.target) && 
+                !toggle.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
     </script>
 </body>
 </html>
